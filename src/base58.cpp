@@ -16,6 +16,8 @@
 #include <algorithm>
 #include <assert.h>
 #include <string.h>
+#include <vector>
+#include <string>
 
 
 /** All alphanumeric characters except for "0", "I", "O", and "l" */
@@ -349,6 +351,9 @@ public:
 
     bool operator()(const CKeyID& id) const { return addr->Set(id); }
     bool operator()(const CScriptID& id) const { return addr->Set(id, script_type_); }
+    bool operator()(const WitnessV0ScriptHash& id) const { return false; }
+    bool operator()(const WitnessV0KeyHash& id) const { return false; }
+    bool operator()(const WitnessUnknown& id) const { return false; }
     bool operator()(const CNoDestination& no) const { return false; }
 };
 
